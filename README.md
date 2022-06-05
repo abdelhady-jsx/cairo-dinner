@@ -1,3 +1,16 @@
+# cairo-dinner
+
+A React web project for a fictional online food ordering business named "Cairo Dinner", shipping anywhere in Greater Cairo.
+
+This project is licensed under the GNU GPL V3 license.
+
+## What I plan to use
+- Styled components (maybe a bit of CSS modules too)
+- React Hooks (Reducers, Imperative Handles, Refs, Context, State)
+- React core features
+
+## Features
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
