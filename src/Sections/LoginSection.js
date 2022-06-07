@@ -99,7 +99,7 @@ const LoginSection = () => {
     }, [ formState.isUsernameValid, formState.isPasswordValid ])
     const handleSubmit = (e) => {
         e.preventDefault()
-        formState.isFormValid ? authContext.loginUser(formState.usernameValue) : alert('Login failed')
+        formState.isFormValid ? authContext.loginUser(formState.usernameValue, formState.passwordValue) : alert('Login failed')
     }
     const handleChange = (e) => {
         switch (e.target.name) {

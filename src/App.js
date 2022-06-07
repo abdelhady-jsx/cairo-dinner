@@ -52,12 +52,30 @@ const authUserReducer = (state = DEFAULT_AUTH_USER, action) => {
   }
 }
 
+// User List
+let users = [
+  {
+    username: 'hady',
+    password: '12345678',
+  },
+  {
+    username: 'john',
+    password: '87654321',
+  },
+]
+
 function App() {
   const [ authUser, dispatchAuthUser ] = useReducer(authUserReducer, DEFAULT_AUTH_USER)
-  const loginUser = (username) => {
-    Cookies.set('loggedIn', 'true')
-    Cookies.set('username', username)
-    dispatchAuthUser(loginUserAction(username))
+  const loginUser = (username, password) => {
+    for (const user of users) {
+      if (user.username === username && user.password === password) {
+        Cookies.set('loggedIn', 'true')
+        Cookies.set('username', username)
+        dispatchAuthUser(loginUserAction(username))
+        return;
+      }
+    }
+    throw new Error('Invalid username or password')
   }
   const logoutUser = () => {
     Cookies.remove('loggedIn')
