@@ -5,9 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: white;
+  background-image: url('./Images/traditional-egyptian-food.jpg');
+  background-color: rgb(17rgb(171, 171, 171)1, 171, 171);
+  background-repeat: no-repeat;
+  background-position: top center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+:root {
+  accent-color: maroon;
+}
+
+h1 {
+  font-size: 2.8rem;
+  line-height: 3rem;
+}
+
+p {
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+#root {
+  position: relative;
 }

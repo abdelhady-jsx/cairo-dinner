@@ -10,6 +10,18 @@ This project is licensed under the GNU GPL V3 license.
 - React core features
 
 ## Features
+- Food products (amount, price, add to cart)
+- Cart (items + subtotal)
+- Responsive design
+- A hero section
+- Navigation
+- Login
+
+## License
+- Licensed under the GNU GPL V3
+- The knife and the fork icons designed by Freepik and published by Flaticons
+- CSS Reset written by Eric Meyers
+- Arabesque Texture made by David Sanchez
 
 # Getting Started with Create React App
 

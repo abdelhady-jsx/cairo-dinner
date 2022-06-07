@@ -1,0 +1,31 @@
+.hero {
+    background-color: maroon;
+    border: 1px solid rgb(163, 163, 163);
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
+    padding: 15px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 125px auto;
+    justify-content: space-evenly;
+    height: min-content;
+    border-radius: 3px;
+    transition: 1s all;
+}
+
+.hero:hover {
+    background-color: rgb(174, 0, 0);
+    border: 1px solid rgb(211, 211, 211);
+    cursor: pointer;
+    user-select: none;
+}
+
+.hero h1 {
+    line-height: 4rem;
+    text-transform: uppercase;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.hero p {
+    line-height: 2rem;
+}

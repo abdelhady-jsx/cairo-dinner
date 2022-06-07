@@ -1,0 +1,28 @@
+.containerFluid {
+    width: 100%;
+}
+
+.containerFluid::after {
+    content: '';
+    background-color: rgb(171, 171, 171);
+    position: fixed;
+    width: 150%;
+    height: 150%;
+    top: 350px;
+    left: 0;
+    transform: rotate(-7deg);
+    z-index: -1;
+    background-image: url(../../Images/arabesque-david-sanchez.png);
+  }
+
+.container {
+    min-height: 80vh;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    z-index: 1;
+}
