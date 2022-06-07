@@ -1,0 +1,14 @@
+.button {
+    color: white;
+    padding: 10px 15px;
+    box-sizing: border-box;
+    border: 1px solid black;
+    transition: 1s all;
+    background-color: maroon;
+}
+
+.button:hover:not(.button:disabled) {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}

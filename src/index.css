@@ -7,7 +7,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: white;
   background-image: url('./Images/traditional-egyptian-food.jpg');
-  background-color: rgb(17rgb(171, 171, 171)1, 171, 171);
+  background-color: rgb(171, 171, 171);
   background-repeat: no-repeat;
   background-position: top center;
 }
@@ -23,12 +23,17 @@ code {
 
 h1 {
   font-size: 2.8rem;
-  line-height: 3rem;
+  line-height: 3.5rem;
+}
+
+h2 {
+  font-size: 2.4rem;
+  line-height: 3.5rem;
 }
 
 p {
   font-size: 1.2rem;
-  line-height: 1.5rem;
+  line-height: 2rem;
 }
 
 #root {

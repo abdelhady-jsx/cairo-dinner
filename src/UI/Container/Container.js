@@ -1,13 +1,25 @@
 import classes from './Container.module.css'
 
-export const ContainerFluid = ({ children }) => {
-    return (<div className={classes.containerFluid}>
+export const ContainerFluid = ({ children, bgColor, textColor }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.containerFluid}>
         {children}
     </div>)
 }
 
-const Container = ({ children }) => {
-    return (<div className={classes.container}>
+export const Row = ({ children, bgColor, textColor }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.row}>
+        {children}
+    </div>)
+}
+
+export const Col = ({ children, bgColor, textColor }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.col}>
+        {children}
+    </div>)
+}
+
+const Container = ({ children, bgColor, textColor }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.container}>
         {children}
     </div>)
 }

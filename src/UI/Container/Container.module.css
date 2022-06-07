@@ -26,3 +26,16 @@
     flex-wrap: wrap;
     z-index: 1;
 }
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+}
