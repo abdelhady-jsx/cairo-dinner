@@ -86,7 +86,7 @@ const validatePassword = (password) => (typeof password === 'string' && password
 
 // Component
 
-const RegistrationSection = () => {
+const RegistrationSection = ({ alertUser}) => {
     const authContext = useContext(AuthContext)
     const [ formState, dispatchFormState ] = useReducer(formReducer, DEFAULT_FORM_STATE)
     useEffect(() => {
@@ -99,7 +99,11 @@ const RegistrationSection = () => {
     }, [ formState.isUsernameValid, formState.isPasswordValid ])
     const handleSubmit = (e) => {
         e.preventDefault()
-        formState.isFormValid ? authContext.registerUser(formState.usernameValue, formState.passwordValue) : alert('Registration failed')
+        try {
+            formState.isFormValid ? authContext.registerUser(formState.usernameValue, formState.passwordValue) : alertUser(true, 'Registration failed!', `${!formState.isUsernameValid && ('Username is invalid. Please make sure it is 3-24 characters.')} ${!formState.isPasswordValid && ('Password is invalid. Please make sure it is 8-60 characters.')}`)
+        } catch(e) {
+            alertUser(true, 'Encountered an error :(', e.message)
+        }
     }
     const handleChange = (e) => {
         switch (e.target.name) {
