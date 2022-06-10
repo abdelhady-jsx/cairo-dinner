@@ -2,12 +2,13 @@ import React, { useEffect, useReducer } from 'react'
 import Cookies from 'js-cookie'
 
 // UI
-import Container, { ContainerFluid, Row, RotatedTexture } from './UI/Container/Container'
+import Container, { ContainerFluid, Row, Col, RotatedTexture } from './UI/Container/Container'
 
 // Sections
 import NavigationSection from './Sections/NavigationSection'
 import HeroSection from './Sections/HeroSection'
 import LoginSection from './Sections/LoginSection'
+import RegistrationSection from './Sections/RegistrationSection'
 
 // Context
 import AuthContext from './Context/AuthContext'
@@ -67,15 +68,23 @@ let users = [
 function App() {
   const [ authUser, dispatchAuthUser ] = useReducer(authUserReducer, DEFAULT_AUTH_USER)
   const loginUser = (username, password) => {
-    for (const user of users) {
-      if (user.username === username && user.password === password) {
-        Cookies.set('loggedIn', 'true')
-        Cookies.set('username', username)
-        dispatchAuthUser(loginUserAction(username))
-        return;
-      }
+    const userMatch = users.filter((user) => user.username === username && user.password === password).length
+    if (userMatch !== 1) throw new Error('User not found')
+    Cookies.set('loggedIn', 'true')
+    Cookies.set('username', username)
+    dispatchAuthUser(loginUserAction(username))
+  }
+  const registerUser = (username, password) => {
+    const userExists = users.filter((user) => user.username === username).length
+    if (userExists > 0) throw new Error('User already exists')
+    Cookies.set('loggedIn', 'true')
+    Cookies.set('username', username)
+    const newUserData = {
+      username,
+      password,
     }
-    throw new Error('Invalid username or password')
+    users.push(newUserData)
+    dispatchAuthUser(loginUserAction(username))
   }
   const logoutUser = () => {
     Cookies.remove('loggedIn')
@@ -94,7 +103,7 @@ function App() {
     }
   }, [])
   return (
-    <AuthContext.Provider value={{ loggedIn: authUser.loggedIn, username: authUser.username, loginUser, logoutUser }}>
+    <AuthContext.Provider value={{ loggedIn: authUser.loggedIn, username: authUser.username, loginUser, logoutUser, registerUser }}>
       <ContainerFluid style={{ minHeight: '100vh' }}>
         <RotatedTexture />
         <NavigationSection />
@@ -107,7 +116,12 @@ function App() {
             </HeroSection>)}
           </Row>
           <Row>
-            {!authUser.loggedIn && (<LoginSection />)}
+            <Col type='half'>
+              {!authUser.loggedIn && (<LoginSection />)}
+            </Col>
+            <Col type='half'>
+              {!authUser.loggedIn && (<RegistrationSection />)}
+            </Col>
           </Row>
         </Container>
       </ContainerFluid>

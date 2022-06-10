@@ -33,9 +33,37 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    box-sizing: border-box;
 }
 
-.col {
+.colHalf {
     display: flex;
     flex-direction: column;
+    width: 50%;
+    box-sizing: border-box;
+    /* margin: 0 5px; */
+}
+
+.colQuarter {
+    display: flex;
+    flex-direction: column;
+    width: 25%;
+    box-sizing: border-box;
+    /* margin: 0 5px; */
+}
+
+.colThird {
+    display: flex;
+    flex-direction: column;
+    width: 33.33%;
+    box-sizing: border-box;
+    /* margin: 0 5px; */
+}
+
+.colFull {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    /* margin: 0 5px; */
 }

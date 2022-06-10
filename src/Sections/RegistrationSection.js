@@ -86,7 +86,7 @@ const validatePassword = (password) => (typeof password === 'string' && password
 
 // Component
 
-const LoginSection = () => {
+const RegistrationSection = () => {
     const authContext = useContext(AuthContext)
     const [ formState, dispatchFormState ] = useReducer(formReducer, DEFAULT_FORM_STATE)
     useEffect(() => {
@@ -99,7 +99,7 @@ const LoginSection = () => {
     }, [ formState.isUsernameValid, formState.isPasswordValid ])
     const handleSubmit = (e) => {
         e.preventDefault()
-        formState.isFormValid ? authContext.loginUser(formState.usernameValue, formState.passwordValue) : alert('Login failed')
+        formState.isFormValid ? authContext.registerUser(formState.usernameValue, formState.passwordValue) : alert('Registration failed')
     }
     const handleChange = (e) => {
         switch (e.target.name) {
@@ -110,15 +110,15 @@ const LoginSection = () => {
     }
     return (
         <>
-            <Form title={'Please login to continue'} desc={'Type your username and password below to finish logging in.'} onSubmit={handleSubmit}>
+            <Form title={'Please register to continue'} desc={'Type your username and password below to finish registering your account.'} onSubmit={handleSubmit}>
                 <Col>
-                    <Input id={'usernameInputLogin'} name={'username'} type={'text'} value={formState.usernameValue} placeholder={'Type your username here'} onChange={handleChange} label={'Username'}  invalid={!formState.isUsernameValid} minLen={3} maxLen={24} />
-                    <Input id={'passwordInputLogin'} name={'password'} type={'password'} value={formState.passwordValue} placeholder={'Type your password here'} onChange={handleChange} label={'Password'}  invalid={!formState.isPasswordValid} minLen={8} maxLen={60} />
-                    <Button type={'submit'} text={'Login'} disabled={!formState.isFormValid} />
+                    <Input id={'usernameInputRegister'} name={'username'} type={'text'} value={formState.usernameValue} placeholder={'Type your username here'} onChange={handleChange} label={'Username'}  invalid={!formState.isUsernameValid} minLen={3} maxLen={24} />
+                    <Input id={'passwordInputRegister'} name={'password'} type={'password'} value={formState.passwordValue} placeholder={'Type your password here'} onChange={handleChange} label={'Password'}  invalid={!formState.isPasswordValid} minLen={8} maxLen={60} />
+                    <Button type={'submit'} text={'Register'} disabled={!formState.isFormValid} />
                 </Col>
             </Form>
         </>
     )
 }
 
-export default LoginSection
+export default RegistrationSection

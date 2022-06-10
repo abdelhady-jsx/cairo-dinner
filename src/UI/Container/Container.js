@@ -12,8 +12,8 @@ export const Row = ({ children, bgColor, textColor }) => {
     </div>)
 }
 
-export const Col = ({ children, bgColor, textColor }) => {
-    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.col}>
+export const Col = ({ children, bgColor, textColor, type }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={type === 'half' ? classes.colHalf : type === 'quarter' ? classes.colQuarter : classes === 'third' ? classes.colThird : classes.colFull}>
         {children}
     </div>)
 }
