@@ -110,7 +110,7 @@ const RegistrationSection = () => {
     }
     return (
         <>
-            <Form title={'Please register to continue'} desc={'Type your username and password below to finish registering your account.'} onSubmit={handleSubmit}>
+            <Form title={'Or, create a new account!'} desc={'Type your username and password below to finish registering your account.'} onSubmit={handleSubmit}>
                 <Col>
                     <Input id={'usernameInputRegister'} name={'username'} type={'text'} value={formState.usernameValue} placeholder={'Type your username here'} onChange={handleChange} label={'Username'}  invalid={!formState.isUsernameValid} minLen={3} maxLen={24} />
                     <Input id={'passwordInputRegister'} name={'password'} type={'password'} value={formState.passwordValue} placeholder={'Type your password here'} onChange={handleChange} label={'Password'}  invalid={!formState.isPasswordValid} minLen={8} maxLen={60} />

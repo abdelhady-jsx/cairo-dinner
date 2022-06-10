@@ -1,5 +1,5 @@
 .navigationWrapper {
-    background-color: maroon;
+    background-color: brown;
 }
 
 .navigation {
@@ -10,6 +10,16 @@
     flex-wrap: wrap;
     align-items: center;
     max-width: 1000px;
+}
+
+.logo {
+    user-select: none;
+    cursor: pointer;
+    transition: 1s all;
+}
+
+.logo:hover {
+    opacity: 0.9;
 }
 
 .logo img {
@@ -30,12 +40,13 @@
     margin: 5px 2.5px;
     box-sizing: border-box;
     transition: 1s all;
+    user-select: none;
 }
 
 .navLink:hover {
     cursor: pointer;
-    background-color: white;
-    color: maroon;
+    color: #707070;
+    background-color: beige;
 }
 
 .navLink a {
