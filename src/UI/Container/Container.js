@@ -18,8 +18,14 @@ export const Col = ({ children, bgColor, textColor, type }) => {
     </div>)
 }
 
-export const RotatedTexture = ({ children, bgColor, textColor }) => {
-    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.rotatedTexture}>
+export const RotatedTexture = ({ children, bgColor, textColor, style }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor, ...style }} className={classes.rotatedTexture}>
+        {children}
+    </div>)
+}
+
+export const NormalTexture = ({ children, bgColor, textColor, style }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor, ...style }} className={classes.normalTexture}>
         {children}
     </div>)
 }

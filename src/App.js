@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react'
 import Cookies from 'js-cookie'
 
 // UI
-import Container, { ContainerFluid, Row, Col, RotatedTexture } from './UI/Container/Container'
+import Container, { ContainerFluid, Row, Col, RotatedTexture, NormalTexture } from './UI/Container/Container'
 
 // Sections
 import NavigationSection from './Sections/NavigationSection'
@@ -105,7 +105,8 @@ function App() {
   return (
     <AuthContext.Provider value={{ loggedIn: authUser.loggedIn, username: authUser.username, loginUser, logoutUser, registerUser }}>
       <ContainerFluid style={{ minHeight: '100vh' }}>
-        <RotatedTexture />
+        <RotatedTexture style={{ top: !authUser.loggedIn ? '40vh' : '', transform: !authUser.loggedIn ? 'rotate(0deg)' : '' }} />
+        <NormalTexture style={{ top: !authUser.loggedIn ? '38vh' : '' }} />
         <NavigationSection />
         <Container>
           <Row>

@@ -9,11 +9,24 @@
     position: absolute;
     width: 200%;
     height: 200%;
-    top: 250px;
+    top: 75.3vh;
     transform: rotate(-7deg);
     background-image: url(../../Images/arabesque-david-sanchez.png);
     box-shadow: 1px 0px 10px black;
     z-index: -1;
+    transition: 1s all;
+}
+
+.normalTexture {
+    background-color: rgb(171, 171, 171);
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: 100.3vh;
+    background-image: url(../../Images/arabesque-david-sanchez.png);
+    box-shadow: 1px 0px 10px black;
+    z-index: -1;
+    transition: 1s all;
 }
 
 .container {
@@ -66,4 +79,10 @@
     width: 100%;
     box-sizing: border-box;
     /* margin: 0 5px; */
+}
+
+@media (max-width: 768px) {
+    .colHalf, .colQuarter, .colThird {
+        width: 100%;
+    }
 }

@@ -2,12 +2,14 @@ import classes from './Navigation.module.css'
 import logo from '../../Images/cairo-dinner-logo-transparent-1000x1000.png'
 
 export const NavLink = ({ children, linkTo, linkText, onClick }) => {
-    return (
+    if (linkTo) return (
+        <a href={linkTo}>
+            <button className={classes.navLink} onClick={onClick}>{linkText}</button>
+        </a>
+    )
+    else return (
         <button className={classes.navLink} onClick={onClick}>
-            {linkTo && (
-                <a href={linkTo}>{linkText}</a>
-            )}
-            {!linkTo && (children)}
+            {children}
         </button>
     )
 }
@@ -19,7 +21,7 @@ const Navigation = ({ children }) => {
             <div className={classes.logo}>
                 <img src={logo} alt={'Cairo Dinner Logo'} />
             </div>
-            <div className={classes.nav}>
+            <div className={classes.navLinks}>
                 {children}
             </div>
         </div>
