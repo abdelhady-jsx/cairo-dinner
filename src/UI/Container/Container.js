@@ -1,7 +1,7 @@
 import classes from './Container.module.css'
 
-export const ContainerFluid = ({ children, bgColor, textColor }) => {
-    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.containerFluid}>
+export const ContainerFluid = ({ children, bgColor, textColor, style }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor, ...style }} className={classes.containerFluid}>
         {children}
     </div>)
 }
@@ -18,8 +18,14 @@ export const Col = ({ children, bgColor, textColor }) => {
     </div>)
 }
 
-const Container = ({ children, bgColor, textColor }) => {
-    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.container}>
+export const RotatedTexture = ({ children, bgColor, textColor }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor }} className={classes.rotatedTexture}>
+        {children}
+    </div>)
+}
+
+const Container = ({ children, bgColor, textColor, style }) => {
+    return (<div style={{ backgroundColor: bgColor, color: textColor, ...style }} className={classes.container}>
         {children}
     </div>)
 }

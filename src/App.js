@@ -2,7 +2,7 @@ import React, { useEffect, useReducer } from 'react'
 import Cookies from 'js-cookie'
 
 // UI
-import Container, { ContainerFluid, Row } from './UI/Container/Container'
+import Container, { ContainerFluid, Row, RotatedTexture } from './UI/Container/Container'
 
 // Sections
 import NavigationSection from './Sections/NavigationSection'
@@ -95,15 +95,16 @@ function App() {
   }, [])
   return (
     <AuthContext.Provider value={{ loggedIn: authUser.loggedIn, username: authUser.username, loginUser, logoutUser }}>
-      <ContainerFluid>
+      <ContainerFluid style={{ minHeight: '100vh' }}>
+        <RotatedTexture />
         <NavigationSection />
         <Container>
           <Row>
-            <HeroSection headerText={'Welcome to Cairo Dinner!'}>
+            {authUser.loggedIn && (<HeroSection headerText={'Welcome to Cairo Dinner!'}>
               <p>Order your food online. Shipping anywhere in Cairo.</p>
               <p>Enjoy delicious traditional Egyptian food.</p>
               <p>Shipping Meat, Fruit, Vegetables, Dairy Products, Desserts, & more!</p>
-            </HeroSection>
+            </HeroSection>)}
           </Row>
           <Row>
             {!authUser.loggedIn && (<LoginSection />)}
