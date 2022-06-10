@@ -110,11 +110,7 @@ function App() {
         <NavigationSection />
         <Container>
           <Row>
-            {authUser.loggedIn && (<HeroSection headerText={'Welcome to Cairo Dinner!'}>
-              <p>Order your food online. Shipping anywhere in Cairo.</p>
-              <p>Enjoy delicious traditional Egyptian food.</p>
-              <p>Shipping Meat, Fruit, Vegetables, Dairy Products, Desserts, & more!</p>
-            </HeroSection>)}
+            {authUser.loggedIn && (<HeroSection />)}
           </Row>
           <Row>
             <Col type='half'>

@@ -13,6 +13,7 @@
     height: min-content;
     border-radius: 3px;
     transition: 1s all;
+    position: relative;
 }
 
 .hero:hover {
@@ -30,4 +31,21 @@
 
 .hero p {
     line-height: 2rem;
+}
+
+.heroFoodClipart {
+    max-width: 200px;
+    position: absolute;
+    top: -25%;
+    right: -15%;
+}
+
+@media screen and (max-width: 768px) {
+    .hero {
+        text-align: center;
+    }
+    .heroFoodClipart {
+        right: 0;
+        top: -12.5%;
+    }
 }
