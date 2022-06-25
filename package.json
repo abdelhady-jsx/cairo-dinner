@@ -1,13 +1,13 @@
 {
-  "name": "@abdelhady-jsx/cairo-dinner",
+  "name": "@hadyjsx/cairo-dinner",
   "version": "0.1.0",
-  "author": "Abdelhady 'abdelhady-jsx' Salah",
+  "author": "Abdelhady 'hadyjsx' Salah",
   "license": "GPL-3",
   "repository": {
     "type": "git",
-    "url": "https://github.com/abdelhady-jsx/cairo-dinner.git"
+    "url": "https://github.com/hadyjsx/cairo-dinner.git"
   },
-  "homepage": "https://github.com/abdelhady-jsx/cairo-dinner",
+  "homepage": "https://github.com/hadyjsx/cairo-dinner",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
