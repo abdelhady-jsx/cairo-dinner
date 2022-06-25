@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react'
+import React, { useEffect, useReducer, useState } from 'react'
 import Cookies from 'js-cookie'
 import Alert from './Alert'
 
@@ -15,6 +15,7 @@ import ProductsList from './Sections/ProductsList'
 // Context
 import AuthContext from './Context/AuthContext'
 import FoodContext from './Context/FoodContext'
+import CartContext from './Context/CartContext'
 
 // Images
 import Falafel from './Images/taameya-egyptian-falafel.jpg'
@@ -113,42 +114,50 @@ const food = [
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: `Ful Medames & Ta'ameya`,
     image: Falafel,
+    price: 15
   },
   {
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: 'Kushari',
     image: Kushari,
+    price: 20
   },
   {
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: 'Mulukhiyah',
     image: Mulukhiyah,
+    price: 50
   },
   {
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: 'Moussaka',
     image: Moussaka,
+    price: 75
   },
   {
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: 'Shish Kabab & Kofta',
     image: Kabab,
+    price: 125
   },
   {
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: 'Fattah',
     image: Fattah,
+    price: 150
   },
   {
     id: `#${Math.floor(Math.random() * 1000) + 1000}`,
     name: 'Hawawshi',
     image: Hawawshi,
+    price: 75
   },
 ]
 
 function App() {
   const [ authUser, dispatchAuthUser ] = useReducer(authUserReducer, DEFAULT_AUTH_USER)
   const [ alertUserState, dispatchAlertUser ] = useReducer(alertStateReducer, DEFAULT_ALERT_STATE)
+  const [ userCart, updateUserCart ] = useState({})
   const alertUser = (showAlert = DEFAULT_ALERT_STATE.showAlert, title = DEFAULT_ALERT_STATE.title, text = DEFAULT_ALERT_STATE.text) => {
     return dispatchAlertUser(showAlertAction(showAlert, title, text))
   }
@@ -176,6 +185,25 @@ function App() {
     Cookies.remove('username')
     dispatchAuthUser(logoutUserAction())
   }
+  const addToCart = (id, quantity) => {
+    if (quantity <= 0 || quantity > 10) throw new Error('Invalid quantity')
+    if (!food.filter((recipe) => recipe.id === id).length) throw new Error('Invalid product ID')
+    updateUserCart((prevUserCart) => {
+      return {
+        ...prevUserCart,
+        [id]: quantity,
+      }
+    })
+  }
+  const removeFromCart = (id) => {
+    if (!food.filter((recipe) => recipe.id === id).length) throw new Error('Invalid product ID')
+    if (!userCart[id]) throw new Error('Invalid quantity')
+    updateUserCart((prevUserCart) => {
+      const clone = Object.assign({}, prevUserCart)
+      delete clone[id]
+      return clone
+    })
+  }
   useEffect(() => {
     let loginTimer
     if (Cookies.get('loggedIn') === 'true' && Cookies.get('username')) {
@@ -190,28 +218,30 @@ function App() {
   return (
     <AuthContext.Provider value={{ loggedIn: authUser.loggedIn, username: authUser.username, loginUser, logoutUser, registerUser }}>
       <FoodContext.Provider value={ { food, } }>
-        <Alert showAlert={alertUserState.showAlert} title={alertUserState.title} text={alertUserState.text} alertUser={alertUser} />
-        <ContainerFluid style={{ minHeight: '100vh' }}>
-          <RotatedTexture style={{ top: !authUser.loggedIn ? '40vh' : '', transform: !authUser.loggedIn ? 'rotate(0deg)' : '' }} />
-          <NormalTexture style={{ top: !authUser.loggedIn ? '38vh' : '' }} />
-          <NavigationSection />
-          <Container>
-            <Row>
-              {authUser.loggedIn && (<>
-                <HeroSection />
-                <ProductsList />
-              </>)}
-            </Row>
-            <Row>
-              <Col type='half'>
-                {!authUser.loggedIn && (<LoginSection alertUser={alertUser} />)}
-              </Col>
-              <Col type='half'>
-                {!authUser.loggedIn && (<RegistrationSection alertUser={alertUser} />)}
-              </Col>
-            </Row>
-          </Container>
-        </ContainerFluid>
+        <CartContext.Provider value={{ cart: userCart, addToCart, removeFromCart }}>
+          <Alert showAlert={alertUserState.showAlert} title={alertUserState.title} text={alertUserState.text} alertUser={alertUser} />
+          <ContainerFluid style={{ minHeight: '100vh' }}>
+            <RotatedTexture style={{ top: !authUser.loggedIn ? '40vh' : '', transform: !authUser.loggedIn ? 'rotate(0deg)' : '' }} />
+            <NormalTexture style={{ top: !authUser.loggedIn ? '38vh' : '' }} />
+            <NavigationSection />
+            <Container>
+              <Row>
+                {authUser.loggedIn && (<>
+                  <HeroSection />
+                  <ProductsList alertUser={alertUser} />
+                </>)}
+              </Row>
+              <Row>
+                <Col type='half'>
+                  {!authUser.loggedIn && (<LoginSection alertUser={alertUser} />)}
+                </Col>
+                <Col type='half'>
+                  {!authUser.loggedIn && (<RegistrationSection alertUser={alertUser} />)}
+                </Col>
+              </Row>
+            </Container>
+          </ContainerFluid>
+        </CartContext.Provider>
       </FoodContext.Provider>
     </AuthContext.Provider>
   );
