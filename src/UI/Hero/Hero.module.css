@@ -3,7 +3,7 @@
     border: 1px solid beige;
     color: white;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.25);
-    padding: 15px 25px;
+    padding: 25px 35px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,6 +14,8 @@
     border-radius: 3px;
     transition: 1s all;
     position: relative;
+    min-width: 800px;
+    box-sizing: border-box;
 }
 
 .hero:hover {

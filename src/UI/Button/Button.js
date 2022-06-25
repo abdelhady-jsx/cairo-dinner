@@ -1,8 +1,8 @@
 import classes from './Button.module.css'
 
-const Button = ({ type, text, onClick, disabled }) => {
+const Button = ({ type, text, onClick, disabled, style }) => {
     return (
-        <button className={classes.button} type={type} onClick={onClick} disabled={disabled}>{text}</button>
+        <button style={style} className={classes.button} type={type} onClick={onClick} disabled={disabled}>{text}</button>
     )
 }
 
