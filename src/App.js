@@ -186,22 +186,21 @@ function App() {
 		dispatchAuthUser(logoutUserAction())
 	}
 	const addToCart = (id, quantity) => {
-		if (quantity <= 0 || quantity > 10) throw new Error('Invalid quantity')
 		if (!food.filter((recipe) => recipe.id === id).length) throw new Error('Invalid product ID')
-		updateUserCart((prevUserCart) => {
-			return {
-				...prevUserCart,
-				[id]: quantity,
-			}
-		})
-	}
-	const removeFromCart = (id) => {
-		if (!food.filter((recipe) => recipe.id === id).length) throw new Error('Invalid product ID')
-		if (!userCart[id]) throw new Error('Invalid quantity')
-		updateUserCart((prevUserCart) => {
+		if (+quantity > 0 && (+userCart[id] + +quantity) > 10) throw new Error('Invalid quantity - you can\'t add more than 10 items of the same recipe.')
+		if (+quantity < 0 && (+userCart[id] + +quantity) < 0) throw new Error('Invalid quantity - you can\'t add negative values to the cart.')
+		if (+quantity === 0) throw new Error('Empty quantity')
+		if (+userCart[id] + +quantity === 0) return updateUserCart((prevUserCart) => {
 			const clone = Object.assign({}, prevUserCart)
 			delete clone[id]
 			return clone
+		})
+		updateUserCart((prevUserCart) => {
+			const prevQuantity = +prevUserCart[id] || 0
+			return {
+				...prevUserCart,
+				[id]: prevQuantity + +quantity,
+			}
 		})
 	}
 	useEffect(() => {
@@ -218,7 +217,7 @@ function App() {
 	return (
 		<AuthContext.Provider value={{ loggedIn: authUser.loggedIn, username: authUser.username, loginUser, logoutUser, registerUser }}>
 			<FoodContext.Provider value={{ food, }}>
-				<CartContext.Provider value={{ cart: userCart, addToCart, removeFromCart }}>
+				<CartContext.Provider value={{ cart: userCart, addToCart }}>
 					<Alert showAlert={alertUserState.showAlert} title={alertUserState.title} text={alertUserState.text} alertUser={alertUser} />
 					<ContainerFluid style={{ minHeight: '100vh' }}>
 						<RotatedTexture style={{ top: !authUser.loggedIn ? '40vh' : '', transform: !authUser.loggedIn ? 'rotate(0deg)' : '' }} />

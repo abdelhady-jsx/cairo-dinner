@@ -13,6 +13,7 @@ const Product = ({ id, name, image, price, alertUser }) => {
     const handleAddToCart = () => {
         try {
             addToCart(id, quantity)
+            setQuantity(0)
         } catch(e) {
             alertUser(true, 'Encountered an error :(', e.message)
         }
@@ -30,7 +31,6 @@ const Product = ({ id, name, image, price, alertUser }) => {
                     <Button style={{ borderRadius: '10px' }} text={<FaMinus />} onClick={removeQuantity} disabled={quantity <= 0} />
                 </ProductActions>
             </ProductDescription>
-
         </ProductContainer>
     </>)
 }

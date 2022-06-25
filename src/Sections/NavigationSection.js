@@ -16,7 +16,7 @@ function NavigationSection() {
           <NavLink onClick={authContext.logoutUser}>
             Logout, {authContext.username}
           </NavLink>
-          <Cart itemsNo={Object.keys(cartContext.cart).length} />
+          <Cart itemsNo={Object.values(cartContext.cart).reduce((prev, cur) => +prev + +cur, 0)} />
         </>
       )}
     </Navigation>

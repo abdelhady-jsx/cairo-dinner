@@ -24,7 +24,7 @@ const Cart = ({ itemsNo }) => {
                     <p style={{ maxWidth: '100px', textAlign: 'center' }}>{foodEntry && foodEntry.name}</p>
                     <p>Amount: {value}</p>
                     <p>Price: £E{foodEntry && foodEntry.price}</p>
-                    <GiCrossMark onClick={() => cartContext.removeFromCart(key)} />
+                    <GiCrossMark onClick={() => cartContext.addToCart(key, -1)} />
                     </CartProduct>
             })}
             {totalProducts > 0 && (<CartProduct>
